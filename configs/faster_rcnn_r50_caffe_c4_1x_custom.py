@@ -4,9 +4,12 @@ _base_ = [
     '../mmdetection/configs/_base_/default_runtime.py'
 ]
 
+is_debug=False
 
 # dataset settings
-fp16 = dict(loss_scale=512.)
+if not is_debug:
+    fp16 = dict(loss_scale=512.)
+
 dataset_type = 'CustomDataset'
 data_root = '/mnt/850G/GIT/kaggle_kuzu/data/kuzushiji-recognition/'
 img_norm_cfg = dict(
@@ -55,8 +58,8 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    imgs_per_gpu=4,
-    workers_per_gpu=8,
+    imgs_per_gpu=1 if is_debug else 3,
+    workers_per_gpu=0 if is_debug else 8,
     train=dict(
         type=dataset_type,
         ann_file=data_root + 'dtrainval_crop.pkl',
@@ -76,4 +79,4 @@ data = dict(
 
 
 # optimizer
-optimizer = dict(type='SGD', lr=0.005, momentum=0.9, weight_decay=0.0001)
+optimizer = dict(type='SGD', lr=0.02, momentum=0.9, weight_decay=0.0001)
