@@ -5,8 +5,8 @@ from pathlib import Path
 from PIL import Image
 from tqdm import tqdm
 
-DATASET_PATH=Path('data/kuzushiji-recognition')
-MAX_TRAIN_IMGS=250
+DATASET_PATH=Path('data/kuzushiji-recognition_dbg')
+MAX_TRAIN_IMGS=10
 
 def iter_bboxes(labels):
     if not labels:

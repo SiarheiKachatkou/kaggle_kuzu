@@ -7,7 +7,7 @@ from tqdm import tqdm
 import mmcv
 from mmdet.core.bbox import bbox_overlaps
 
-DATASET_PATH=Path('data/kuzushiji-recognition')
+DATASET_PATH=Path('data/kuzushiji-recognition_dbg')
 SIZE = 1024
 LABEL_DUMMY = 4788
 

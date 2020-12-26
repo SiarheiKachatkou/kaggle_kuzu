@@ -4,14 +4,18 @@ _base_ = [
     '../mmdetection/configs/_base_/default_runtime.py'
 ]
 
-is_debug=False
+is_debug=True
 
 # dataset settings
-if not is_debug:
+if True:#not is_debug:
     fp16 = dict(loss_scale=512.)
 
 dataset_type = 'CustomDataset'
-data_root = '/mnt/850G/GIT/kaggle_kuzu/data/kuzushiji-recognition/'
+if is_debug:
+    data_root = '/mnt/850G/GIT/kaggle_kuzu/data/kuzushiji-recognition_dbg/'
+else:
+    data_root = '/mnt/850G/GIT/kaggle_kuzu/data/kuzushiji-recognition/'
+
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 train_pipeline = [
